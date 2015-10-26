@@ -23,6 +23,9 @@ function MirrorImage( event )
 	local casterOrigin = caster:GetAbsOrigin()
 	local casterAngles = caster:GetAngles()
 
+	-- Stop any actions of the caster otherwise its obvious which unit is real
+	caster:Stop()
+
 	-- Initialize the illusion table to keep track of the units created by the spell
 	if not caster.mirror_image_illusions then
 		caster.mirror_image_illusions = {}
@@ -103,6 +106,8 @@ function MirrorImage( event )
 		
 		-- Without MakeIllusion the unit counts as a hero, e.g. if it dies to neutrals it says killed by neutrals, it respawns, etc.
 		illusion:MakeIllusion()
+		-- Set the illusion hp to be the same as the caster
+		illusion:SetHealth(caster:GetHealth())
 
 		-- Add the illusion created to a table within the caster handle, to remove the illusions on the next cast if necessary
 		table.insert(caster.mirror_image_illusions, illusion)

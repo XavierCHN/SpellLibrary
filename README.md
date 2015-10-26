@@ -9,9 +9,9 @@ Emails: [martinnoya@gmail.com](martinnoya@gmail.com) / [dario.siprak@gmail.com](
 
 If you wish to contribute then it would be nice to do it in a way that would be readable and recognizable like this http://yrrep.me/dota/dota-standards.html
 
-Forum thread - https://moddota.com/forums/discussion/23/spell-library
+[Forum thread](https://moddota.com/forums/discussion/23/spell-library)
 
-Progress spreadsheet - https://docs.google.com/spreadsheets/d/1oNoqMW2_PZ57TEonAQgMF-9JlApbt3LPNFtx72RhS8Y/edit#gid=0
+[Progress spreadsheet](https://docs.google.com/spreadsheets/d/1oNoqMW2_PZ57TEonAQgMF-9JlApbt3LPNFtx72RhS8Y/edit#gid=0)
 
 Guidelines
 ==========
@@ -80,11 +80,13 @@ Recommended resources
 =====================
 - [Tutorials](https://moddota.com/forums/categories/tutorials) the great tutorials made by [Noya](https://moddota.com/forums/profile/5/Noya)
 
-- [Sound editor](https://dl.dropboxusercontent.com/u/19417676/dota_sound_editor1.2.2.zip) the sound editor for finding the proper ability sounds, made by [pingzing](https://github.com/pingzing)
+- [Dota 2 Modkit](https://github.com/Myll/Dota-2-ModKit/releases) great tool when it comes to everything Dota 2 modding related, made by [Myll](https://github.com/Myll)
+
+- [Sound editor](https://dl.dropboxusercontent.com/u/19417676/dota_sound_editor_v1.3.1.zip) the sound editor for finding the proper ability sounds, made by [pingzing](https://github.com/pingzing)
 
 - [Workshop Tools Wiki](https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools) the official Dota 2 Workshop Tools wiki
 
-- [Decompiled particles](https://mega.co.nz/#!BpYUmCgJ!_Ks49abeMdgn9t4nL-yMP26BrjuHZLpiHE18p_bS-pg) provided by [Myll](https://github.com/Myll)
+- [Decompiled particles](https://mega.co.nz/#!BpYUmCgJ!_Ks49abeMdgn9t4nL-yMP26BrjuHZLpiHE18p_bS-pg) provided by [Toraxxx](https://github.com/Toraxxx)
 
 
 Special Thanks

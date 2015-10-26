@@ -1,3 +1,6 @@
+// Rewrite of Pugna Nether Blast
+// Author: Noya
+// Date: April 5, 2015
 "pugna_nether_blast_datadriven"
 {
 	// General
@@ -8,6 +11,7 @@
 	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 	"FightRecapLevel"				"1"
 	"AbilityTextureName"			"pugna_nether_blast"
+	"AOERadius"						"%radius"
 
 	// Casting
 	//-------------------------------------------------------------------------------------------------------------
@@ -44,6 +48,101 @@
 		{
 			"var_type"					"FIELD_INTEGER"
 			"radius"					"400 400 400 400"
+		}
+	}
+
+	"precache"
+	{
+		"particle"  "particles/units/heroes/hero_pugna/pugna_netherblast.vpcf"
+		"particle"  "particles/units/heroes/hero_pugna/pugna_netherblast_pre.vpcf"
+		"soundfile" "soundevents/game_sounds_heroes/game_sounds_pugna.vsndevts"
+	}
+
+	"OnSpellStart"
+	{
+		"CreateThinker"
+		{
+			"ModifierName"	"modifier_nether_blast_thinker"
+			"Target" 		"POINT"
+		}
+	}
+
+	"Modifiers"
+	{
+		"modifier_nether_blast_thinker"
+		{
+			"IsHidden"			"1"
+			"Duration"			"1"
+
+			"OnCreated"
+			{
+				"FireSound"
+				{
+					"EffectName"	"Hero_Pugna.NetherBlastPreCast"
+					"Target" 		"TARGET"
+				}
+
+				"FireEffect"
+				{
+					"Target"			"TARGET"
+					"EffectName"        "particles/units/heroes/hero_pugna/pugna_netherblast_pre.vpcf"
+					"EffectAttachType"  "follow_origin"
+					"ControlPoints"
+					{
+						"01"				"%radius %delay %radius"
+					}
+				}
+
+				"DelayedAction"
+				{
+					"Delay"     "%delay"
+					"Action"    
+					{
+						"FireSound"
+						{
+							"EffectName"	"Hero_Pugna.NetherBlast"
+							"Target" 		"CASTER"
+						}
+
+						"FireEffect"
+						{
+							"EffectName"        "particles/units/heroes/hero_pugna/pugna_netherblast.vpcf"
+							"EffectAttachType"  "follow_origin"
+							"Target"			"TARGET"
+							"ControlPoints"
+							{
+								"01"				"%radius %radius %radius"
+							}
+						}
+
+						"Damage"
+						{
+							"Target"
+							{
+								"Center"  	"TARGET"
+								"Radius" 	"%radius"
+								"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+								"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+							}
+							"Type"			"DAMAGE_TYPE_MAGICAL"
+							"Damage"		"%AbilityDamage"
+						}
+
+						"Damage"
+						{
+							"Target"
+							{
+								"Center"  	"TARGET"
+								"Radius" 	"%radius"
+								"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+								"Types" 	"DOTA_UNIT_TARGET_BUILDING"
+							}
+							"Type"			"DAMAGE_TYPE_MAGICAL"
+							"Damage"		"%AbilityDamage * %structure_damage_mod"
+						}
+					}
+				}
+			}
 		}
 	}
 }

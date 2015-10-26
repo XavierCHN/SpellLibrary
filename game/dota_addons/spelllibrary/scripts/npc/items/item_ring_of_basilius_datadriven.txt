@@ -5,6 +5,7 @@
 //     Since there is currently no way to alter the item's texture on the fly, Ring of Basilius is split up into two items.
 //     Toggling Ring of Basilius activates the 10-second window in which it can be sold for full price.
 //     Due to the half-second aura stickiness, rapidly toggling this item will grant twice the aura's effects to nearby heroes.
+//     The aura currently stacks with Ring of Aquila's and Vladmir's Offering's.
 
 //A dummy item that is used to take up item slots in the swap_to_item() Lua function.
 "item_dummy_datadriven"

@@ -4,8 +4,9 @@
 
 	"AbilityLayout"	"4"
 
-	"Ability1"	"dazzle_shallow_grave_datadriven"
-	"Ability2"	"vengefulspirit_wave_of_terror_datadriven"
-	"Ability3"	"vengefulspirit_command_aura_datadriven"
-	"Ability4"	"dazzle_weave_datadriven"
+	"Ability1"	"life_stealer_rage_datadriven"
+	"Ability2"	"obsidian_destroyer_astral_imprisonment_datadriven"
+	"Ability3"	"life_stealer_open_wounds_datadriven"
+	"Ability4"	"life_stealer_infest_datadriven"
+	"Ability5"	"life_stealer_consume_datadriven"
 }

@@ -105,7 +105,7 @@ end
   The hero parameter is the hero entity that just spawned in
 ]]
 function GameMode:OnHeroInGame(hero)
-  print("[BAREBONES] Hero spawned in game for first time -- " .. hero:GetUnitName())
+  --print("[BAREBONES] Hero spawned in game for first time -- " .. hero:GetUnitName())
 
   --[[ Multiteam configuration, currently unfinished
 
@@ -130,6 +130,10 @@ function GameMode:OnHeroInGame(hero)
   local abil = hero:GetAbilityByIndex(1)
   hero:RemoveAbility(abil:GetAbilityName())
   hero:AddAbility("example_ability")]]
+
+  for i=1,24 do
+    hero:HeroLevelUp(false)
+  end
 end
 
 --[[
@@ -195,8 +199,8 @@ end
 
 -- An NPC has spawned somewhere in game.  This includes heroes
 function GameMode:OnNPCSpawned(keys)
-  print("[BAREBONES] NPC Spawned")
-  PrintTable(keys)
+  --print("[BAREBONES] NPC Spawned")
+  --PrintTable(keys)
   local npc = EntIndexToHScript(keys.entindex)
 
   if npc:IsRealHero() and npc.bFirstSpawned == nil then
@@ -444,11 +448,11 @@ function GameMode:InitGameMode()
   -- All of these events can potentially be fired by the game, though only the uncommented ones have had
   -- Functions supplied for them.  If you are interested in the other events, you can uncomment the
   -- ListenToGameEvent line and add a function to handle the event
+  ListenToGameEvent('player_connect_full', Dynamic_Wrap(GameMode, 'OnConnectFull'), self)
   --[[ListenToGameEvent('dota_player_gained_level', Dynamic_Wrap(GameMode, 'OnPlayerLevelUp'), self)
   ListenToGameEvent('dota_ability_channel_finished', Dynamic_Wrap(GameMode, 'OnAbilityChannelFinished'), self)
   ListenToGameEvent('dota_player_learned_ability', Dynamic_Wrap(GameMode, 'OnPlayerLearnedAbility'), self)
-  ListenToGameEvent('entity_killed', Dynamic_Wrap(GameMode, 'OnEntityKilled'), self)
-  ListenToGameEvent('player_connect_full', Dynamic_Wrap(GameMode, 'OnConnectFull'), self)
+  ListenToGameEvent('entity_killed', Dynamic_Wrap(GameMode, 'OnEntityKilled'), self)  
   ListenToGameEvent('player_disconnect', Dynamic_Wrap(GameMode, 'OnDisconnect'), self)
   ListenToGameEvent('dota_item_purchased', Dynamic_Wrap(GameMode, 'OnItemPurchased'), self)
   ListenToGameEvent('dota_item_picked_up', Dynamic_Wrap(GameMode, 'OnItemPickedUp'), self)
@@ -462,7 +466,7 @@ function GameMode:InitGameMode()
   ListenToGameEvent('player_connect', Dynamic_Wrap(GameMode, 'PlayerConnect'), self)
   ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(GameMode, 'OnAbilityUsed'), self)
   ListenToGameEvent('game_rules_state_change', Dynamic_Wrap(GameMode, 'OnGameRulesStateChange'), self)
-  ListenToGameEvent('npc_spawned', Dynamic_Wrap(GameMode, 'OnNPCSpawned'), self)
+  
   ListenToGameEvent('dota_player_pick_hero', Dynamic_Wrap(GameMode, 'OnPlayerPickHero'), self)
   ListenToGameEvent('dota_team_kill_credit', Dynamic_Wrap(GameMode, 'OnTeamKillCredit'), self)
   ListenToGameEvent("player_reconnected", Dynamic_Wrap(GameMode, 'OnPlayerReconnect'), self)]]
@@ -475,6 +479,7 @@ function GameMode:InitGameMode()
   --ListenToGameEvent('dota_player_killed', Dynamic_Wrap(GameMode, 'OnPlayerKilled'), self)
   --ListenToGameEvent('player_team', Dynamic_Wrap(GameMode, 'OnPlayerTeam'), self)
 
+  ListenToGameEvent('npc_spawned', Dynamic_Wrap(GameMode, 'OnNPCSpawned'), self)
 
 
   -- Commands can be registered for debugging purposes or as functions that can be called by the custom Scaleform UI
@@ -566,6 +571,10 @@ function GameMode:CaptureGameMode()
     mode:SetFogOfWarDisabled(DISABLE_FOG_OF_WAR_ENTIRELY)
     mode:SetGoldSoundDisabled( DISABLE_GOLD_SOUNDS )
     mode:SetRemoveIllusionsOnDeath( REMOVE_ILLUSIONS_ON_DEATH )
+
+    -- This is important for cosmetic switching
+    SendToServerConsole("dota_combine_models 0")
+    SendToConsole("dota_combine_models 0")
 
 
     --GameRules:GetGameModeEntity():SetThink( "Think", self, "GlobalThink", 2 )
